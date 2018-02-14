@@ -1,6 +1,6 @@
 package com.example.mihai.testhandling.gui.first.presenter;
 
-import com.example.mihai.testhandling.network.remote.BackgroundCallback;
+import com.example.mihai.testhandling.gui.first.presenter.local.BackgroundCallback;
 
 /**
  * Created by adasc on 2/13/2018.

@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import com.example.mihai.testhandling.gui.first.presenter.FirstPresenter;
 import com.example.mihai.testhandling.gui.first.view.FirstView;
-import com.example.mihai.testhandling.network.remote.BackgroundCallback;
 
 /**
  * Created by adasc on 2/14/2018.

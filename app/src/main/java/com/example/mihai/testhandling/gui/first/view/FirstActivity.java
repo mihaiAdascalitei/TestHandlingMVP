@@ -1,7 +1,6 @@
 package com.example.mihai.testhandling.gui.first.view;
 
 import android.content.Intent;
-import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +11,8 @@ import android.widget.Toast;
 import com.example.mihai.testhandling.R;
 import com.example.mihai.testhandling.gui.first.presenter.FirstPresenter;
 import com.example.mihai.testhandling.gui.first.presenter.FirstPresenterImplementation;
-import com.example.mihai.testhandling.gui.first.presenter.local.ThreadHandlingPresenter;
 import com.example.mihai.testhandling.gui.second.view.SecondActivity;
-import com.example.mihai.testhandling.gui.second.view.SecondView;
-import com.example.mihai.testhandling.network.remote.BackgroundCallback;
+import com.example.mihai.testhandling.gui.first.presenter.local.BackgroundCallback;
 
 public class FirstActivity extends AppCompatActivity implements FirstView, View.OnClickListener {
 

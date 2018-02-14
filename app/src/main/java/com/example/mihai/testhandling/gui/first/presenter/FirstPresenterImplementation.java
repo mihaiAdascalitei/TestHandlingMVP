@@ -4,13 +4,12 @@ import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.example.mihai.testhandling.R;
 import com.example.mihai.testhandling.gui.first.presenter.local.ThreadHandlingPresenter;
 import com.example.mihai.testhandling.gui.first.view.FirstView;
 import com.example.mihai.testhandling.network.ApiCallback;
-import com.example.mihai.testhandling.network.ApiService;
-import com.example.mihai.testhandling.network.remote.BackgroundCallback;
-import com.example.mihai.testhandling.utils.Utils;
+import com.example.mihai.testhandling.gui.first.presenter.local.BackgroundCallback;
+import com.example.mihai.testhandling.network.ApiServiceExecutor;
+import com.example.mihai.testhandling.network.remote.ApiServiceCall;
 
 import java.net.HttpURLConnection;
 
@@ -20,10 +19,12 @@ import java.net.HttpURLConnection;
 
 public class FirstPresenterImplementation implements FirstPresenter {
     private ThreadHandlingPresenter localPresenter;
+    private ApiServiceCall apiService;
 
 
     public FirstPresenterImplementation(FirstView view, Activity activity) {
         this.localPresenter = new ThreadHandlingPresenter(view, activity);
+        this.apiService = new ApiServiceExecutor();
     }
 
     @Override
@@ -34,7 +35,7 @@ public class FirstPresenterImplementation implements FirstPresenter {
 
     @Override
     public void doServerRequest(String number, final BackgroundCallback callback) {
-        ApiService.getInstance().doServerRequest(number, new ApiCallback() {
+        apiService.doServerRequest(number, new ApiCallback() {
             @Override
             public void onResponse(boolean isSuccess, int code, String message, @Nullable String result) {
                 if (isSuccess && code == HttpURLConnection.HTTP_OK) {
