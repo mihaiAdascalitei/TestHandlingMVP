@@ -5,5 +5,8 @@ package com.example.mihai.testhandling.network;
  */
 
 public enum HttpMethods {
+    /**
+     * in use soon
+     */
     GET, POST
 }

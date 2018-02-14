@@ -3,7 +3,7 @@ package com.example.mihai.testhandling.network;
 import android.support.annotation.Nullable;
 
 import com.example.mihai.testhandling.network.remote.ApiServiceCall;
-import com.example.mihai.testhandling.network.remote.ServerRequest;
+import com.example.mihai.testhandling.network.remote.IRequestHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,9 +14,14 @@ import java.util.HashMap;
  * Created by adasc on 2/14/2018.
  */
 
-public class ApiServiceExecutor implements ApiServiceCall {
+public class ApiServiceExecutor implements ApiServiceCall.ApiService {
 
     private final String HTTP_REQUEST_URL = "http://192.168.100.4:5000/number";
+    private ApiServiceCall.ApiModel apiModel;
+
+    public ApiServiceExecutor() {
+        apiModel = new ApiServerModel();
+    }
 
 
     @Override
@@ -31,15 +36,14 @@ public class ApiServiceExecutor implements ApiServiceCall {
             e.printStackTrace();
         }
 
-        ServerRequest serverRequest = new ServerRequest(HttpMethods.POST, hashMap, HTTP_REQUEST_URL, new ServerRequest.IRequestHandler() {
+        apiModel.doPostRequest(hashMap, HTTP_REQUEST_URL, jsonObject.toString(), new IRequestHandler() {
             @Override
             public void onSucceeded(boolean isSuccess, int code, String message, @Nullable String result) {
                 if (callback != null) {
                     callback.onResponse(isSuccess, code, message, result);
                 }
             }
-        }, jsonObject.toString());
+        });
 
-        serverRequest.makeRequest();
     }
 }

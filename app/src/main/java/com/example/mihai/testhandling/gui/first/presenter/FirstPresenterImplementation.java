@@ -19,7 +19,7 @@ import java.net.HttpURLConnection;
 
 public class FirstPresenterImplementation implements FirstPresenter {
     private ThreadHandlingPresenter localPresenter;
-    private ApiServiceCall apiService;
+    private ApiServiceCall.ApiService apiService;
 
 
     public FirstPresenterImplementation(FirstView view, Activity activity) {
