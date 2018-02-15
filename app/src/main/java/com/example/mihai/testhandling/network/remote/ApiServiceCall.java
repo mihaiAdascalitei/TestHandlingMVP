@@ -1,10 +1,9 @@
 package com.example.mihai.testhandling.network.remote;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
-import com.example.mihai.testhandling.network.ApiCallback;
-
-import org.json.JSONObject;
+import com.example.mihai.testhandling.network.HttpMethods;
 
 import java.util.HashMap;
 
@@ -19,11 +18,10 @@ public interface ApiServiceCall {
     }
 
     interface ApiModel {
-        void doGetRequest(@NonNull HashMap<String, String> parameters,
-                          @NonNull String requestURL, @NonNull final IRequestHandler requestHandler);
 
+        ApiModel initRequestData(HttpMethods method, @NonNull HashMap<String, String> parameters,
+                                 @NonNull String requestURL, @Nullable String jsonBody);
 
-        void doPostRequest(@NonNull HashMap<String, String> parameters,
-                           @NonNull String requestURL, @NonNull String jsonBody, @NonNull final IRequestHandler requestHandler);
+        ApiModel triggerRequest(@NonNull final ApiCallback callback);
     }
 }

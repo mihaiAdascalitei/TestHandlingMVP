@@ -2,8 +2,8 @@ package com.example.mihai.testhandling.network;
 
 import android.support.annotation.Nullable;
 
+import com.example.mihai.testhandling.network.remote.ApiCallback;
 import com.example.mihai.testhandling.network.remote.ApiServiceCall;
-import com.example.mihai.testhandling.network.remote.IRequestHandler;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,14 +36,16 @@ public class ApiServiceExecutor implements ApiServiceCall.ApiService {
             e.printStackTrace();
         }
 
-        apiModel.doPostRequest(hashMap, HTTP_REQUEST_URL, jsonObject.toString(), new IRequestHandler() {
-            @Override
-            public void onSucceeded(boolean isSuccess, int code, String message, @Nullable String result) {
-                if (callback != null) {
-                    callback.onResponse(isSuccess, code, message, result);
-                }
-            }
-        });
+        apiModel.initRequestData(HttpMethods.POST, hashMap, HTTP_REQUEST_URL, jsonObject.toString())
+                .triggerRequest(new ApiCallback() {
+                    @Override
+                    public void onResponse(boolean isSuccess, int code, String message, @Nullable String result) {
+                        if (callback != null) {
+                            callback.onResponse(isSuccess, code, message, result);
+                        }
+                    }
+                });
+
 
     }
 }

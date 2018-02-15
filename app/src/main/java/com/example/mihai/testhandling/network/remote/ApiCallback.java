@@ -1,4 +1,4 @@
-package com.example.mihai.testhandling.network;
+package com.example.mihai.testhandling.network.remote;
 
 import android.support.annotation.Nullable;
 

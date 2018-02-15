@@ -6,7 +6,7 @@ import android.util.Log;
 
 import com.example.mihai.testhandling.gui.first.presenter.local.ThreadHandlingPresenter;
 import com.example.mihai.testhandling.gui.first.view.FirstView;
-import com.example.mihai.testhandling.network.ApiCallback;
+import com.example.mihai.testhandling.network.remote.ApiCallback;
 import com.example.mihai.testhandling.gui.first.presenter.local.BackgroundCallback;
 import com.example.mihai.testhandling.network.ApiServiceExecutor;
 import com.example.mihai.testhandling.network.remote.ApiServiceCall;
